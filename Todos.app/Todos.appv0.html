@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todos</title>
+</head>
+<body>
+  <input type="text" class="input-todo" placeholder="Enter todo!">
+  <button class="add">add</button>
+  <ul class="todos"></ul>
+
+  <script>
+  const $inputTodo = document.querySelector('.input-todo');
+  const $addButton = document.querySelector('.add');
+  const $todos = document.querySelector('.todos');
+
+  $addButton.onclick = function () {
+    if (!$inputTodo.value) return;
+
+    $todos.innerHTML += `<li><label><input type="checkbox"> ${$inputTodo.value}</label></li>`;
+    $inputTodo.value = '';
+  };
+
+  $todos.onchange = function({target}) {
+    console.log(target.checked);
+    const $todo = target.parentNode.parentNode;
+    // if (target.checked) {
+    //   $todo.style.textDecoration = 'line-through';
+    // } else{
+    //   $todo.style.textDecoration = 'none';
+
+      $todo.style.textDecoration = target.checked ? 'line-through' : 'none';
+    // }
+  };
+
+  </script>
+</body>
+</html>

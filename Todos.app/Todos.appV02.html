@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TodosV0.2</title>
+  <style>
+  .state:checked + span {
+    text-decoration: line-through;
+  }
+  li {
+    list-style: none;
+  }
+  </style>
+</head>
+
+<body>
+  <input type="text" class="input" placeholder="Enter todo!">
+  <ul class="todos"></ul>
+</body>
+<script>
+let todos = [];
+const $todos = document.querySelector('ul');
+
+function render () {
+  console.log(todos);
+  let html = '';
+
+  todos.forEach (todo => {
+    html += `<li id='${todo.id}'>
+    <label>
+    <input type='checkbox' class='state' ${todo.completed ? 'checked' : ''}>
+    <span>${todo.content}</span>
+    <button class='remove'>x</button>
+    </label>
+    </li>`;
+  });
+  $todos.innerHTML = html;
+}
+
+$todos.addEventListener('click', function (e) {
+  if (!e.target.classList.contains('remove')) return;
+  $todos.removeChild(e.target.parentNode.parentNode);
+})
+
+const getTodos = function () {
+  // TODO: 서버로부터 데이터를 취득.
+  todos = [
+    { id: 1, content: 'HTML', completed: false },
+    { id: 2, content: 'CSS', completed: true },
+    { id: 3, content: 'Javascript', completed: false }
+  ];
+
+  render();
+};
+
+window.onload = getTodos;
+</script>
+
+
+</html>
