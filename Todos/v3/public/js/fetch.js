@@ -20,7 +20,8 @@ const getTodos = () => {
   fetch('/todos')
     .then(res => res.json())
     .then(_todos => todos = _todos)
-    .then(render);
+    .then(render)
+    .catch(err => console.error(err));
 };
 
 const removeTodo = id => {
