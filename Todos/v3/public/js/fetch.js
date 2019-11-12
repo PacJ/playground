@@ -38,7 +38,7 @@ const addTodo = content => {
   fetch('/todos', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ id: generateId(), content, completed: false})
+    body: JSON.stringify({ id: generateId(), content, completed: false })
   })
     .then(res => res.json())
     .then(_todos => todos = _todos)
